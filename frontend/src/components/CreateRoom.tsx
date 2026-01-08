@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import axiosClient from "@/utils/api";
+import { useNavigate } from "react-router";
 
 const CreateRoom = () => {
+	const navigate= useNavigate()
 	const [username, setUsername] = useState("");
 	const [roomCode, setRoomCode] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -34,6 +36,9 @@ const CreateRoom = () => {
 			});
 			if (response.data.success) {
 				console.log("Room created", response.data);
+				navigate(`/chat/${roomCode}`,{
+					state:{username}
+				})
 			} else {
 				alert(response.data.message);
 			}
@@ -83,7 +88,7 @@ const CreateRoom = () => {
 						onClick={createRoom}
 						disabled={loading2}
 					>
-						Create Room
+						Create
 					</Button>
 				</div>
 			</div>
