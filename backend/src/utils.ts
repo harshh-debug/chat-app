@@ -7,3 +7,4 @@ export function getCode(){
     } 
     return code;
 }
+export const activeRooms = new Set<string>();
